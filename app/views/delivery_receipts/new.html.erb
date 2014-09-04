@@ -1,0 +1,233 @@
+<head>
+  <title>Create DR</title>
+</head>
+
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#pp1').change(function(){
+            $("#p1").prop('disabled', false)
+        });
+        $('#pp2').change(function(){
+            $("#p1").prop('disabled', false)
+        });
+        $('#pp3').change(function(){
+            $("#p1").prop('disabled', false)
+        });
+
+        $("#p1").change(function(){
+            $("#p2").prop('disabled', false);
+            $("#p3").prop('disabled', false);
+        });
+
+        $('#p2').change(function()
+        {
+            $('#pp4').prop('disabled', false);
+            $('#pp5').prop('disabled', false);
+            $('#pp6').prop('disabled', false);
+            $('#pp7').prop('disabled', false);
+            $('#pp8').prop('disabled', false);
+        });
+
+        $('#pp4').change(function(){
+             $('#p4').prop('disabled', false);
+        })
+
+        $('#pp5').change(function(){
+            $('#p4').prop('disabled', false);
+        });
+
+        $('#pp6').change(function(){
+            $('#p4').prop('disabled', false);
+        });
+
+        $('#pp7').change(function(){
+            $('#p4').prop('disabled', false);
+        });
+
+        $('#pp8').change(function(){
+            $('#p4').prop('disabled', false);
+        });
+
+
+        $('#p4').change(function(){
+            $('.selectpicker').prop('disabled', false);
+        });
+
+    });
+</script>
+
+<div class="container">
+ <%= form_for(new_delivery_receipt_path, :url => new_delivery_receipt_url,:html => { :class => "highlight"}) do |receipt| %>
+  <h3><span class="icon-truck"></span> New Delivery Receipt</h3>
+
+  <div class="panel panel-default">
+  <div class="panel-body">
+
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Company Code -->
+      <h4><div class="label label-default">
+      <%= receipt.label :company_code, '1.Company Code:' %>
+      </div></h4>
+
+    <div class="form-group">
+      <%= radio_button_tag 'cc', 'cdci', false, :id => 'pp1' %>
+      <%= receipt.label :cdci, "CDCI" %>
+      <%= radio_button_tag 'cc', 'cydc', false, :id => 'pp2' %>
+      <%= receipt.label :cydc, "CYDC" %>
+      <%= radio_button_tag 'cc', 'agvet', false, :id => 'pp3' %>
+      <%= receipt.label :agvet, "AGVET" %>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <h4><div class="label label-default">
+        <%= receipt.label :dr_no, '2.DR No.:' %>
+      </div></h4>
+      <%= receipt.text_field :dr_no, :disabled => 'true', :id => 'p1' %>
+    </div>
+
+    <div class="col-md-3">
+      <h4><div class="label label-default">
+        <%= receipt.label :dr_date, '3.DR Date:' %>
+      </div></h4>
+      <!-- <%= receipt.date_select :dr_date, :order => [:month, :day, :year] %> -->
+      <%= receipt.date_field :dr_date,:value => Time.now.strftime('%m-%d-%Y'), :disabled => 'true', :id => 'p2' %>
+    </div>
+
+    <div class="col-md-3">
+      <h4><div class="label label-default">
+        <%= receipt.label :po_no, '4.PO No.:' %>
+      </div></h4>
+      <%= receipt.text_field :po_no, :disabled => 'true', :id => 'p3' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h4><div class="label label-default">
+        <%= receipt.label :terms, '5.Terms:' %>
+      </div></h4>
+
+      <div class="form-group">
+        <%= radio_button_tag 'terms', 'cash', false, :id => 'pp4', :disabled => true %>
+        <%= receipt.label :cash, "Cash" %>
+        <%= radio_button_tag 'terms', 'thirty', false, :id => 'pp5', :disabled => true  %>
+        <%= receipt.label :thirty, "30 days" %>
+        <%= radio_button_tag 'terms', 'forty_five', false, :id => 'pp6', :disabled => true  %>
+        <%= receipt.label :forty_five, "45 days" %>
+        <%= radio_button_tag 'terms', 'sixty', false, :id => 'pp7', :disabled => true  %>
+        <%= receipt.label :sixty, "60 days" %>
+        <%= radio_button_tag 'terms', 'ninety', false, :id => 'pp8', :disabled => true  %>
+        <%= receipt.label :ninety, "90 days" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <h4><div class="label label-default">
+        <%= receipt.label :cust_no, '6.Customer No.:' %>
+      </div></h4>
+        <%= receipt.text_field :cust_no, :disabled => 'true', :id => 'p4' %>
+    </div>
+
+    <div class="col-md-3">
+      <h4><div class="label label-default">
+        <%= receipt.label :cust_no, '7. DR Type:' %>
+      </div></h4>
+
+      <select class="selectpicker" disabled="true">
+        <option>Regular</option>
+        <option>Consignment</option>
+        <option>For Attachment only</option>
+      </select>
+
+    </div>
+
+  </div>
+
+  <br /><br />
+
+  </div>
+  </div>
+
+    <div class="row">
+     <div class="panel panel-default">
+      <div class="panel-body">
+       <div class="col-md-4">
+        <h4>
+         <div class="label label-default">
+            <%= label :cust_name, 'cust_name_label', "Customer Name:" %>
+         </div>
+        </h4>
+         <div class="well well-sm">
+            <%= label :cust_name, 'cust_name', "Metro Drug Inc." %>
+         </div>
+        </div>
+
+        <div class="col-md-6">
+         <h4>
+            <div class="label label-default">
+             <%= label :cust_add, 'cust_add_label', "Customer Address:" %>
+            </div>
+         </h4>
+         <div class="well well-sm">
+            <%= label :cust_add, 'cust_add', "Mañalac Bicutan, Parañaque City" %>
+         </div>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <div class="row">
+    <div class="panel panel-default">
+    <div class="panel-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+      <th>Product Code</th>
+      <th>Lot No.</th>
+      <th>Expiry Date</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Discount</th>
+      <th>Amount</th>
+      <th colspan="2"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <%= render 'form' %>
+      </tr>
+
+       </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-6">
+            <h4>
+             <div class="label label-default">
+                <%= label :total_amount, 'total_amount', "Total Amount:" %>
+             </div>
+            </h4>
+            <div class="well well-sm">
+             <%= label :total_amount, 'total_amount', "Php. 313,123.00" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+ <% end %>
+</div>
+</body>

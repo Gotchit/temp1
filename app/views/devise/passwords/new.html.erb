@@ -1,0 +1,28 @@
+<head>
+  <title>Forgot Password</title>
+</head>
+
+<body>
+
+<div class="wrapper">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin" }) do |f| %>
+    <h2>Forgot your password?</h2><br />
+      <%= devise_error_messages! %>
+     <div><p><%= f.label :email %>
+     <%= f.email_field :email, autofocus: true,:class => "form-control" %></p></div>
+
+  <div><p><!-- <%= f.submit "Send me reset password instructions" %> -->
+
+    <button class="btn btn-sm btn-default" type= <%= f.submit %>
+            <span class="glyphicon glyphicon-send"></span> Send me reset password instructions</button>
+    <br/>
+
+
+  </p></div>
+
+<p><%= render "devise/shared/links" %></p>
+
+  <% end %>
+
+</div>
+</body>

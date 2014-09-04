@@ -1,0 +1,44 @@
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+<div class="container">
+<% if user_signed_in? %>
+<!--   <div class="jumbotron">
+    <div class="well well-lg col-lg-5">
+    <h3>Welcome <%= current_user.email %></h3>
+    <!-- <p><%= link_to destroy_user_session_path, :method => :delete, :class => "btn btn-success btn-sm" do %>
+     <i class="glyphicon glyphicon-log-out"></i> Logout
+     <% end %>
+    </p>
+    <p><%= link_to "Change your password", edit_user_registration_path, :class => "btn btn-warning btn-sm" %></p>
+
+    </div>
+   </div> -->
+<% else %>
+
+    <div class="wrapper">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">You are not logged in.</h2>
+          <%= link_to new_user_session_path, :class => "btn btn-primary btn-lg btn-block", :role => "button" do %>
+           <i class="glyphicon glyphicon-user"></i> Login
+          <% end %>
+      </form>
+
+      <!-- Listing Users -->
+<!--     <% @users = User.all %>
+      <% @users.each do |user| %>
+      <%= user.email %>
+          <%= link_to admin_destroy_user_path(user),
+                      method: :delete,
+                      data: { confirm: "You sure?" },
+                      class: "btn btn-xs btn-danger" do %>
+              <i class="glyphicon glyphicon-trash"></i>
+              <% end %><br />
+      <% end %>
+-->
+    </div>
+<% end %>
+</div>
+</body>

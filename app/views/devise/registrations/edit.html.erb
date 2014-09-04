@@ -1,0 +1,45 @@
+<head>
+  <title>Account Update</title>
+</head>
+
+<body>
+ <div class="wrapper">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "form-signin" }) do |f| %>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <%= devise_error_messages! %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, :class => "form-control" %></div><br />
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div><%= f.label :password %><br /> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off", :class => "form-control" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %></div>
+
+  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "off", :class => "form-control" %></div>
+
+
+  <!-- <button class="btn btn-sm btn-primary" type= <%= f.submit %>
+              <span class="glyphicon glyphicon-save"></span> Update</button><br /><br /> -->
+
+  <!-- <div><%= f.submit "Update" %></div> -->
+
+   <%= button_tag(type: 'submit', class: "btn btn-lg btn-success btn-block") do %>
+    <i class="glyphicon glyphicon-save"></i> Update
+   <% end %>
+
+   <% end %>
+
+<div class="form-signin">
+ <%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-lg btn-warning btn-block" %>
+ <br />
+ <%= link_to "Back", login_index_path, class: "btn btn-lg btn-default btn-block" %>
+</div>
+</div>
+</body>

@@ -1,0 +1,45 @@
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+<div class="wrapper">
+  <%= form_for(resource,  :as => resource_name, :html => { :class => "form-signin"}, :url => session_path(resource_name)) do |f| %>
+    <h2 class="form-signin-heading">Please login</h2>
+    <%= f.email_field :email, autofocus: true,  :type => "text", :class => "form-control", :placeholder => "Email Address", :required => "" %>
+    <%= f.password_field :password, autocomplete: "off", :type => "password", :class => "form-control", :placeholder => "Password", :required => "" %>
+
+     <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <% end -%>
+    <!--  <label><input type="checkbox" name="user[remember_me]" value="TRUE" checked="checked" /> Remember Me</label> -->
+     <!--  <button class="btn btn-lg btn-primary btn-block" type= <%= f.submit %>
+      <span class="glyphicon glyphicon-user"></span> Login</button> -->
+
+    <!-- <%= f.submit "Login", class: "btn btn-lg btn-primary btn-block" %> -->
+
+     <%= button_tag(type: 'submit', class: "btn btn-lg btn-primary btn-block") do %>
+          <i class="glyphicon glyphicon-log-in"></i> Login
+     <% end %>
+      <br/>
+     <%= render "devise/shared/links" %>
+  <% end %>
+</div>
+
+<!--
+<div class="wrapper">
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Please login</h2>
+     <input type="text" class="form-control" name="username" placeholder="Email Address" required=""/>
+     <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+     <label>
+      <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"/> Remember me
+     </label>
+     <button class="btn btn-lg btn-primary btn-block" type="submit">
+       <span class="glyphicon glyphicon-user"></span> Login</button>
+    </br>
+    <%= render "devise/shared/links" %>
+   </form>
+</div>
+-->
+</body>
